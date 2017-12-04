@@ -1,0 +1,529 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      University of Maryland Free Software Mirror
+    </title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <style type="text/css">
+      * {
+      font-size: 100%;
+      font-family: sans-serif;
+      }
+      body {
+      font: normal 76%/1.2em Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      }
+      a {
+      color: #900;
+      text-decoration: none;
+      }
+      a:hover {
+      text-decoration: underline;
+      }
+      h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+      }
+      h1 {
+      font-family: "Verdana";
+      font-size: 14pt;
+      margin-bottom: 0px;
+      margin-top: .25em;
+      }
+      /* h1 {
+      font-size: 150%;
+      }
+      */
+      table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      }
+      table th {
+      text-align: left;
+      }
+      table td {
+      vertical-align: top;
+      }
+      div#mirrorum {
+      background-color: #FFF;
+      padding: 1em 2em;
+      border-top: 3px solid #ffcf00;
+      }
+      div#mirrorum table {
+      width: 100%;
+      }
+      tr.instructions td {
+      padding: 0.5em 1em;
+      }
+      div#mirrorum table td span {
+      color: #999;
+      font-size: 70%;
+      }
+      div#chart {
+      border-top: 1px solid #999;
+      margin-top: .5em;
+      padding-top: .5em;
+      text-align: center;
+      }
+      div#chart div {
+      display: inline-block;
+      margin: 0 10px;
+      }
+      div#chart img {
+      }
+    </style>
+    <script type="text/javascript" src="/js/jquery-1.4.4.min.js">
+    </script>
+    <script type="text/javascript" src="/js/jquery-ui-1.8.9.custom.min.js">
+    </script>
+    <link rel="stylesheet" href="/css/xhtml-962px.css" type="text/css" />
+  </head>
+  <body>
+    <div id="umd-frame">
+      <div id="umd-frame-header">
+	<a href="http://www.umd.edu/"><img src="//www.umd.edu/wrapper/images/header-um-logo.gif" alt="University of Maryland" id="umd-frame-logo"/></a>
+	<div id="umd-frame-header-end"></div>
+      </div>
+
+      <div id="mirrorum">
+          <!--<div style="float:right;padding:5px;width:250px;border: 1px solid black">
+            <p><script type="text/javascript" src="https://polygrant.com/js/button.js"></script><script type="text/javascript">polygrantButton('37d27371ee27', 'UMLUG-Free-Software-Mirror');</script> <a href="https://polygrant.com/projects/view/37d27371ee27/UMLUG-Free-Software-Mirror" style="font-size:14pt"><b>Accepting Donations</b></a></p>
+          </div>-->
+	<h1>
+	  mirror.umd.edu
+	</h1>
+	<p>
+	  This is the <a href="http://www.umd.edu">University of Maryland</a>
+	  Linux Users Group's public mirror of free and open-source software.
+	</p>
+   <p>
+   This mirror is run by student volunteers using rackspace and 1Gbit/s Internet2-capable network provided by the <a href="https://it.umd.edu/">DIT</a>.
+   </p>
+	<h2>News</h2>
+        <p><em>20 November 2017:</em> We have fixed mirroring of ROS Wiki and ROS docs.</p>
+        <p><em>7 August 2016:</em> We have replaced our mirror of ArchAssault with ArchStrike.</p>
+   <!--<p><em>6 April 2015:</em> <b>We're experiencing some storage difficulties resulting in instability. Service may be intermittent while we attempt to resolve these issues.</b></p>-->
+        <!--<p><em>20 August 2015:</em> We are looking to upgrade. Please check out our crowdfunding campaign at <a href="https://polygrant.com/projects/view/37d27371ee27/UMLUG-Free-Software-Mirror">Polygrant.com</a></p>-->
+	<table>
+	  <thead>
+	    <tr>
+	      <th>
+		Software
+	      </th>
+	      <th>
+		Download Link
+	      </th>
+	      <th>
+		Notes
+	      </th>
+	      <th>
+		rsync
+	      </th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td>
+		<a href="http://www.amanda.org/">Amanda</a>
+	      </td>
+	      <td>
+		<a href="/amanda/">downloads</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/amanda/
+		<span id="stats_amanda"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.antergos.com/">Antergos</a>
+	      </td>
+	      <td>
+		<a href="/antergos/">CD images + packages</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/antergos/
+		<span id="stats_antergos"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.archlinux.org/">ArchLinux</a>
+	      </td>
+	      <td>
+		<a href="/archlinux/">CD images + packages</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/archlinux/
+		<span id="stats_archlinux"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.archstrike.org/">ArchStrike</a>
+	      </td>
+	      <td>
+		<a href="/archstrike/">CD images + packages</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/archstrike/
+		<span id="stats_archstrike"></span>
+	      </td>
+	    </tr>
+<!--
+	    <tr>
+	      <td>
+		<a href="http://www.berlios.de/">BerliOS</a>
+	      </td>
+	      <td>
+		<a href="/berlios/">vcs + downloads + lists</a>
+	      </td>
+	      <td>
+		All projects
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/berlios/
+		<span id="stats_berlios"></span>
+	      </td>
+	    </tr>
+-->
+	    <tr>
+	      <td>
+		<a href="http://www.calculate-linux.org/">Calculate Linux</a>
+	      </td>
+	      <td>
+		<a href="/calculate/">CD images + packages</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/calculate/
+		<span id="stats_calculate"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.centos.org/">CentOS</a>
+	      </td>
+	      <td>
+		<a href="/centos/">CD images + packages</a>
+	      </td>
+	      <td>
+		Latest (5, 6, 7)
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/centos/
+		<span id="stats_centos"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.fedoraproject.org/">Fedora Linux</a>
+	      </td>
+	      <td>
+		<a href="/fedora/linux/">CD images + packages</a> | <a href="/fedora/epel">EPEL</a>
+	      </td>
+	      <td>
+		Recent releases
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/fedora/linux/
+		<span id="stats_fedora-linux"></span><br/>
+		rsync://mirror.umd.edu/fedora/epel/
+		<span id="stats_fedora-epel"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://findbugs.sourceforge.net/">FindBugs</a>
+	      </td>
+	      <td>
+		<a href="/findbugs/">downloads</a>
+	      </td>
+	      <td>
+		All releases
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/findbugs/
+		<span id="stats_findbugs"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.gentoo.org/">Gentoo Linux</a>
+	      </td>
+	      <td>
+		<a href="/gentoo/">source files</a> |
+		<a href="/gentoo-portage/">portage</a>
+	      </td>
+	      <td>
+		<a href="#" onclick="javascript:$('#instructions_gentoo').show();">Instructions</a>
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/gentoo-portage/ <span id="stats_gentoo-portage"></span><br/>
+		rsync://mirror.umd.edu/gentoo/ <span id="stats_gentoo"></span>
+	      </td>
+	    </tr>
+	    <tr id="instructions_gentoo" class="instructions">
+	      <td colspan="4">
+		<h2>
+		  Using the Portage mirror
+		</h2>In /etc/make.conf, set the SYNC variable so that it points to this server:
+		<blockquote>
+		  <p>SYNC=rsync://mirror.umd.edu/gentoo-portage</p>
+		</blockquote>
+		<h2>
+		  Using the distfiles mirror
+		</h2>
+		In /etc/make.conf, set the GENTOO_MIRRORS variable:
+		<blockquote>
+		  <p>GENTOO_MIRRORS="http://mirror.umd.edu/gentoo"</p>
+		</blockquote>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.gimp.org/">GIMP</a>
+	      </td>
+	      <td>
+		<a href="/gimp/">downloads</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/gimp/
+		<span id="stats_gimp"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.gnome.org/">GNOME</a>
+	      </td>
+	      <td>
+		<a href="/gnome/">downloads</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/gnome/
+		<span id="stats_gnome"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.kernel.org/">Linux Kernel Archives</a>
+	      </td>
+	      <td>
+		<a href="/kernel.org/">downloads</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/kernel.org/
+		<span id="stats_kernel"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.linuxmint.com/">Linux Mint</a>
+	      </td>
+	      <td>
+		<a href="/linuxmint/images/">CD images</a> | <a href="/linuxmint/packages/">packages</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/linuxmint/images/
+		<span id="stats_linuxmint-images"></span><br/>
+		rsync://mirror.umd.edu/linuxmint/packages/
+		<span id="stats_linuxmint-packages"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.mozdev.org/">mozdev.org</a>
+	      </td>
+	      <td>
+		<a href="/mozdev/">downloads</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/mozdev/
+		<span id="stats_mozdev"></span>
+	      </td>
+	    </tr>
+<!--
+	    <tr>
+	      <td>
+		<a href="http://www.mozilla.org/">Mozilla</a>
+	      </td>
+	      <td>
+		<a href="/mozilla/">downloads</a>
+	      </td>
+	      <td>
+		Recent releases
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/mozilla/
+		<span>(115 GB)</span>
+	      </td>
+	    </tr>
+-->
+	    <tr>
+	      <td>
+		<a href="http://www.opensuse.org/">OpenSUSE</a>
+	      </td>
+	      <td>
+		<a href="/opensuse/distribution/">CD images</a>
+	      </td>
+	      <td>Recent releases</td>
+	      <td>
+		rsync://mirror.umd.edu/opensuse/
+		<span id="stats_opensuse"></span>
+	      </td>
+	      <td></td>
+	    </tr>
+	    <tr>
+	      <td>
+		ospdev.net
+	      </td>
+	      <td>
+		<a href="/download.ospdev.net/">downloads</a>
+	      </td>
+	      <td>All projects</td>
+	      <td>
+		rsync://mirror.umd.edu/download.ospdev.net/
+	      </td>
+	      <td></td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.raspbian.org/">Raspbian</a>
+	      </td>
+	      <td>
+		<a href="/raspbian/">CD images + packages</a>
+	      </td>
+	      <td>All releases
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/raspbian/
+		<span id="stats_raspbian"></span><br/>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.ros.org/">ROS.org</a>
+	      </td>
+	      <td>
+		<a href="/packages.ros.org/">packages</a> | <a href="/roswiki/">wiki</a>
+	      </td>
+	      <td>All releases
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/packages.ros.org/
+		<span id="stats_ros-packages"></span><br/>
+		rsync://mirror.umd.edu/ros.org/
+		<span id="stats_ros-www"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.sabayon.org/">Sabayon Linux</a>
+	      </td>
+	      <td>
+                <a href="/sabayonlinux/">CD images + packages</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/sabayonlinux/
+		<span id="stats_sabayonlinux"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.turnkeylinux.org/">TurnKey Linux</a>
+	      </td>
+	      <td>
+		<a href="/turnkeylinux/">Images</a>
+	      </td>
+	      <td>All releases</td>
+	      <td>
+		rsync://mirror.umd.edu/turnkeylinux/
+		<span id="stats_turnkeylinux"></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.ubuntu.com/">Ubuntu Linux</a>
+	      </td>
+	      <td>
+		<a href="/ubuntu-iso/">CD images</a> | <a href="/ubuntu/">packages</a>
+	      </td>
+	      <td>
+		<a href="#instructions_ubuntu" onclick="$('#instructions_ubuntu').show();">Instructions</a>
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/ubuntu/
+		<span id="stats_ubuntu"></span><br/>
+		rsync://mirror.umd.edu/ubuntu-iso/
+		<span id="stats_ubuntu-iso"></span>
+	      </td>
+	    </tr>
+	    <tr id="instructions_ubuntu" class="instructions">
+	      <td colspan="4">
+		<h2>
+		  Using the local Ubuntu packages mirror
+		</h2>
+		<ol>
+		  <li>Choose "Ubuntu Software Center" from the "Applications" menu.
+		  </li>
+		  <li>Select "Edit" -&gt; "Software Sources"
+		  </li>
+		  <li>In the menu next to "Download from", select "Other..."
+		  </li>
+		  <li>Select "mirror.umd.edu" under "United States" and click "Choose Server".
+		  </li>
+		</ol>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<a href="http://www.kodi.tv/">Kodi (formerly XBMC)</a>
+	      </td>
+	      <td>
+		<a href="/xbmc/">downloads</a>
+	      </td>
+	      <td>
+		All releases
+	      </td>
+	      <td>
+		rsync://mirror.umd.edu/xbmc/
+		<span id="stats_xbmc"></span>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table><script type="text/javascript">
+	  $('.instructions').each(function f(idx, inst) {
+	  $(inst).hide();
+	  });
+        </script>
+	<p>
+	Contact us: <em>mirror at (hostname)</em>
+	</p>
+        <div id="chart"><div id="chart_hour"></div><div id="chart_day"></div></div>
+        <script type="text/javascript">
+          function show_stats(data, textStatus, request) {
+	    for (var module_name in data) {
+              var gb = data[module_name]["size"] / (1024 * 1024 * 1024);
+	      $("#stats_" + module_name.replace("/", "-")).text(gb.toFixed(1) + " GB");
+            }
+	  }
+          var stats = $.getJSON("stats.json", {}, show_stats)
+	  $('#chart_hour').load('/chart.html');
+	  $('#chart_day').load('/chart_day.html');
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
