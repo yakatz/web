@@ -102,7 +102,7 @@ body {
 }
 
 a {
-    color: #900;
+    color: #e21833;
     text-decoration: none;
 }
 a:hover {
@@ -135,17 +135,26 @@ vertical-align: top;
 div#mirrorum {
 background-color: #FFF;
 padding: 1em 2em;
-border-top: 3px solid #ffcf00;
+/*border-top: 3px solid #ffcf00;*/
 }
 div#mirrorum table {
 width: 100%;
 }
+
+tbody tr:nth-child(odd) {
+    background: #eee;
+}
+tbody tr:nth-child(odd) a {
+    color: #d80e29;
+}
+
 tr.instructions td {
 padding: 0.5em 1em;
 }
 div#mirrorum table td span {
-color: #999;
+color: #6C6C6C;
 font-size: 70%;
+padding-left: 1em;
 }
 div#chart {
 border-top: 1px solid #999;
@@ -336,8 +345,4 @@ div#chart img {
     h3 {
         page-break-after: avoid;
     }
-}
-
-tbody tr:nth-child(odd) {
-    background: #eee;
 }
