@@ -337,3 +337,7 @@ div#chart img {
         page-break-after: avoid;
     }
 }
+
+tbody tr:nth-child(odd) {
+    background: #eee;
+}
