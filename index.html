@@ -207,35 +207,76 @@
 
 <script src="/js/umd-header-alerts.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
 <script type="text/javascript">
-	Array.prototype.forEach.call(document.getElementsByClassName('instructions'), function (el) {
-		el.style.display = 'none';
-	});
+function ready(fn) {
+	if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+		fn();
+	} else {
+		document.addEventListener('DOMContentLoaded', fn);
+	}
+}
 
-	Array.prototype.forEach.call(document.querySelectorAll('[data-packagename]'), function(el) {
-		el.addEventListener('click', function(evt) {
-			evt.preventDefault();
-			var id = 'instructions_' + el.getAttribute('data-packagename');
-			var instructions = document.getElementById(id);
-			if (instructions) {
-				instructions.style.display = '';
-			}
-		});
-	});
+ready(function() {
 
-	$(document).ready(function() {
-		function show_stats(data, textStatus, request) {
-			for (var module_name in data) {
-				var gb = data[module_name]["size"] / (1024 * 1024 * 1024);
-				$("#stats_" + module_name.replace("/", "-")).text(gb.toFixed(1) + " GB");
-			}
+Array.prototype.forEach.call(document.getElementsByClassName('instructions'), function (el) {
+	el.style.display = 'none';
+});
+
+Array.prototype.forEach.call(document.querySelectorAll('[data-packagename]'), function(el) {
+	el.addEventListener('click', function(evt) {
+		evt.preventDefault();
+		var id = 'instructions_' + el.getAttribute('data-packagename');
+		var instructions = document.getElementById(id);
+		if (instructions) {
+			instructions.style.display = '';
 		}
-		var stats = $.getJSON("stats.json", {}, show_stats)
-		$('#chart_hour').load('/chart.html');
-		$('#chart_day').load('/chart_day.html');
 	});
+});
+
+function show_stats(data) {
+	for (var module_name in data) {
+		var el = document.getElementById('stats_' + module_name.replace('/', '-'));
+		if (el) {
+			var gb = data[module_name]['size'] / (1024 * 1024 * 1024);
+			el.innerHTML = gb.toFixed(1) + ' GiB';
+		}
+	}
+}
+
+function doAjax(query, callback) {
+	var request = new XMLHttpRequest();
+	request.open('GET', query, true);
+	request.onerror = function(e) {
+		callback(null);
+	};
+	request.onload = function() {
+		if (request.status === 200) {
+			callback(request.responseText);
+		} else {
+			callback(null);
+		}
+	};
+	request.send();
+}
+
+doAjax('/stats.json', function(response) {
+	if (response) {
+		var data = JSON.parse(response);
+		show_stats(data);
+	} else {
+		console.log('error loading mirror sizes');
+	}
+});
+
+doAjax('/chart.html', function(resp) {
+	document.getElementById('chart_hour').innerHTML = resp;
+});
+
+doAjax('/chart_day.html', function(resp) {
+	document.getElementById('chart_day').innerHTML = resp;
+});
+
+});
 </script>
 </body>
 </html>
