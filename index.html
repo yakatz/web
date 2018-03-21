@@ -90,7 +90,7 @@
 				<tr>
 					<td><a href="http://www.gentoo.org/">Gentoo Linux</a></td>
 					<td><a href="/gentoo/">source files</a> |<a href="/gentoo-portage/">portage</a></td>
-					<td><a href="#" onclick="javascript:$('#instructions_gentoo').show();">Instructions</a></td>
+					<td><a href="#" data-packagename="gentoo">Instructions</a></td>
 					<td>rsync://mirror.umd.edu/gentoo-portage/ <span id="stats_gentoo-portage"></span><br/>rsync://mirror.umd.edu/gentoo/ <span id="stats_gentoo"></span></td>
 				</tr>
 				<tr style="display:none"><!-- This is to make the striping work properly --></tr>
@@ -176,7 +176,7 @@
 				<tr>
 					<td><a href="http://www.ubuntu.com/">Ubuntu Linux</a></td>
 					<td><a href="/ubuntu-iso/">CD images</a> | <a href="/ubuntu/">packages</a></td>
-					<td><a href="#instructions_ubuntu" onclick="$('#instructions_ubuntu').show();">Instructions</a></td>
+					<td><a href="#instructions_ubuntu" data-packagename="ubuntu">Instructions</a></td>
 					<td>rsync://mirror.umd.edu/ubuntu/<span id="stats_ubuntu"></span><br/>rsync://mirror.umd.edu/ubuntu-iso/<span id="stats_ubuntu-iso"></span></td>
 				</tr>
 				<tr style="display:none"><!-- This is to make the striping work properly --></tr>
@@ -210,12 +210,22 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
 <script type="text/javascript">
-	$(document).ready(function() {
+	Array.prototype.forEach.call(document.getElementsByClassName('instructions'), function (el) {
+		el.style.display = 'none';
+	});
 
-		$('.instructions').each(function f(idx, inst) {
-			$(inst).hide();
+	Array.prototype.forEach.call(document.querySelectorAll('[data-packagename]'), function(el) {
+		el.addEventListener('click', function(evt) {
+			evt.preventDefault();
+			var id = 'instructions_' + el.getAttribute('data-packagename');
+			var instructions = document.getElementById(id);
+			if (instructions) {
+				instructions.style.display = '';
+			}
 		});
+	});
 
+	$(document).ready(function() {
 		function show_stats(data, textStatus, request) {
 			for (var module_name in data) {
 				var gb = data[module_name]["size"] / (1024 * 1024 * 1024);
@@ -227,5 +237,5 @@
 		$('#chart_day').load('/chart_day.html');
 	});
 </script>
-				</body>
-				</html>
+</body>
+</html>
