@@ -5,11 +5,12 @@
  * It is designed to be much easier to read and use. We can get away with this only
  * because we are not an official campus unit - otherwise that would be forbidden.
  *
- * This script includes:
+  * This script includes:
  *  - A small utility handling library (deobfuscated and cleaned up)
+ *  - Code to check for redirects to the UMD homepage and mask it.
  *  - Code to check for UMD Alerts to be shown in the header.
  *
- * Last Modified 2018-03-20
+ * Last Modified 2018-08-01
  */
 
 /**
@@ -21,20 +22,36 @@ var config = {
   cookieName : "umd_header"
 };
 
+function checkStatus(response) {
+  if (response.type == 'opaqueredirect') {
+    return Promise.reject(new Error("Received a redirect."))
+  }
+  if (response.status >= 200 && response.status < 300) {
+    return Promise.resolve(response)
+  } else {
+    return Promise.reject(new Error(response.statusText))
+  }
+}
+
+function parseJson(response) {
+  return response.json()
+}
+
 function doAjax(url, callback) {
-  var xhr = new XMLHttpRequest;
-  xhr.open("get", url, true);
-  xhr.onload = function() {
-    if (xhr.status >= 200 && xhr.status < 400) {
-      var value = xhr.response || xhr.responseText;
-      callback(JSON.parse(value));
-    }
-  };
-  xhr.onerror = function() {
-    console.log(xhr.statusText);
-    callback(null);
-  };
-  xhr.send();
+  var req = new Request(url, {
+      redirect: 'manual'
+    });
+
+  fetch(req)
+    .then(checkStatus)
+    .then(parseJson)
+    .then(function(data) {
+      callback(data);
+    })
+    .catch(function(err) {
+      console.log("Opps, Something went wrong!", err);
+      callback(null);
+    });
 }
 
 function setCookie(c_name, values, days) {
